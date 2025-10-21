@@ -1,39 +1,35 @@
 /* --- GLOBAL STYLES & LAYOUT --- */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    /* Light purple background */
-    background-color: #F8F5FF; 
+    background-color: #F8F5FF;
     color: #333;
     min-height: 100vh;
     padding: 20px;
     box-sizing: border-box;
-    margin: 0; 
+    margin: 0;
 }
 
 /* --- HEADER & BRANDING --- */
 .app-header {
     width: 100%;
-    /* Reduced top padding for mobile to save space */
-    padding: 0 0 20px 0; 
+    padding: 0 0 20px 0;
     box-sizing: border-box;
-    max-width: 900px; /* Match container width for alignment */
+    max-width: 900px;
     margin: 0 auto;
-    text-align: center; /* Center the brand name on mobile */
+    text-align: center;
 }
 
 .app-name {
-    /* Mobile-First: Default size for small screens */
-    font-size: 24px; 
-    font-weight: 700; /* Made it bolder */
-    color: #6A0DAD; 
-    letter-spacing: 1.5px; /* Slightly increased tracking */
-    display: inline-block; /* Allows vertical centering if needed, but here centers text */
+    font-size: 24px;
+    font-weight: 700;
+    color: #6A0DAD;
+    letter-spacing: 1.5px;
+    display: inline-block;
     padding: 5px 10px;
     border-radius: 4px;
-    background-color: #EDE7F6; /* Light background for contrast */
+    background-color: #EDE7F6;
 }
 
-/* Increase size for tablet and desktop */
 @media (min-width: 640px) {
     .app-name {
         font-size: 30px;
@@ -41,126 +37,134 @@ body {
     }
 }
 
-/* --- MAIN CONTAINER (Seamless/No Box) --- */
+/* --- MAIN CONTAINER --- */
 .container {
     width: 100%;
-    /* Focus the interactive content area on a more reasonable width for mobile/desktop */
-    max-width: 900px; 
-    margin: 0 auto; 
-    background-color: #F8F5FF; 
-    padding: 10px 0; /* Adjusted padding */
-    padding-bottom: 80px; 
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #F8F5FF;
+    padding: 10px 0;
+    padding-bottom: 80px;
 }
 
-/* --- CONVERSATIONAL FORM STYLES --- */
-
-/* Wrapper for each step - Makes each step a distinct card */
+/* --- WIZARD FORM STYLES --- */
 .step-card {
     background-color: #FFFFFF;
-    border: 1px solid #E0D1F8; /* Light purple border */
+    border: 1px solid #E0D1F8;
     border-radius: 12px;
     padding: 30px;
     margin-bottom: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow for focus */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .question-label {
     display: block;
     font-size: 20px;
     font-weight: 500;
-    color: #4B0082; /* Dark purple */
+    color: #4B0082;
     margin-bottom: 15px;
 }
 
-.wizard-input,
+/* Corrected padding for ALL inputs/textareas inside the container */
+.input-container input[type="text"],
 .input-container textarea {
     width: 100%;
     padding: 15px;
-    border: 2px solid #D0B8FF; /* Focus on border color */
+    padding-right: 60px !important; /* Make space for the mic button */
+    border: 2px solid #D0B8FF;
     border-radius: 8px;
-    font-size: 18px; /* Larger text for accessibility */
+    font-size: 18px;
     font-family: inherit;
     box-sizing: border-box;
-    margin-bottom: 20px;
+    margin-bottom: 0; /* Margin is on container */
     transition: border-color 0.3s;
 }
 
-.wizard-input:focus,
+.input-container input[type="text"]:focus,
 .input-container textarea:focus {
-    border-color: #8A2BE2; /* Primary purple on focus */
+    border-color: #8A2BE2;
     outline: none;
 }
 
-.step-btn {
-    /* Primary button style */
-    width: auto;
-    display: inline-block;
-    padding: 12px 30px;
-    margin-right: 15px;
+.input-container textarea {
+    height: 150px;
+    resize: vertical;
 }
 
+/* Navigation button group */
+.navigation-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px; /* Add some space between buttons */
+    margin-top: 20px; /* Space above buttons */
+}
+
+/* Make both buttons take up equal space */
+.navigation-group .step-btn,
+.navigation-group .step-back-btn {
+     flex: 1; /* Each takes half the space */
+     margin: 0; /* Remove default margins */
+}
+
+/* Style for single next button (Step 1) */
+#step-1 .step-btn {
+    width: 100%; /* Full width when alone */
+    margin-top: 20px;
+}
+
+
+/* Back button style */
 .step-back-btn {
-    /* Secondary button style for 'Back' */
-    width: auto;
-    display: inline-block;
-    padding: 12px 30px;
-    font-size: 18px;
+    font-size: 18px; /* Match next button size */
     font-weight: bold;
     color: #4B0082;
-    background: none;
-    border: 2px solid #D0B8FF;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    background: #f0eaff; /* Light purple background */
+    border: 1px solid #D0B8FF; /* Purple border */
+    padding: 15px; /* Match next button padding */
 }
 
 .step-back-btn:hover {
-    background: #EBE0FF;
+    background: #E0D1F8;
     color: #4B0082;
     box-shadow: none;
     transform: none;
 }
 
+
 /* --- TYPOGRAPHY --- */
 h1 {
-    color: #4B0082; 
+    color: #4B0082;
     text-align: center;
     margin-bottom: 10px;
-    font-size: 28px; 
+    font-size: 28px;
 }
 
 @media (min-width: 640px) {
     h1 {
-        font-size: 36px; 
+        font-size: 36px;
     }
 }
 
-p {
+p#tagline {
     text-align: center;
     color: #555;
     margin-bottom: 25px;
 }
 
-h2 {
+h2 { /* For Output Title */
     color: #4B0082;
+    text-align: center; /* Center the output title */
+    margin-bottom: 15px;
 }
 
-/* --- INPUTS & BUTTONS (Overrides for General Buttons) --- */
-.input-container textarea {
-    height: 150px;
-    padding-right: 50px; 
-    margin-bottom: 0;
-    resize: vertical;
-}
-
+/* --- GENERAL BUTTONS --- */
 #generate-btn {
-    /* Primary button style */
-    width: 100%;
-    margin-top: 20px; 
+    width: 100%; /* Ensure it spans width inside navigation group */
+    margin: 0; /* Remove default margin */
 }
 
+/* Base button styles */
 button {
-    width: 100%;
     padding: 15px;
     font-size: 18px;
     font-weight: bold;
@@ -169,10 +173,10 @@ button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
 }
 
-button:hover {
+button:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
 }
@@ -180,14 +184,15 @@ button:hover {
 button:disabled {
     background: #ccc;
     cursor: not-allowed;
+    opacity: 0.7;
 }
 
-/* Style for the download button */
 #download-btn {
-    background: linear-gradient(45deg, #FF69B4, #C71585); 
+    background: linear-gradient(45deg, #FF69B4, #C71585);
     margin-top: 15px;
     padding: 10px 15px;
     font-size: 16px;
+    width: 100%; /* Full width */
 }
 
 #download-btn:hover {
@@ -198,82 +203,84 @@ button:disabled {
 .input-container {
     position: relative;
     width: 100%;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 
-#voice-btn {
+.voice-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    width: 35px; /* Slightly smaller for better fit */
+    height: 35px;
     padding: 0;
-    line-height: 40px; 
+    line-height: 35px;
     text-align: center;
-    background: #e0e0e0;
-    color: #333;
+    background: #e9e9e9; /* Lighter background */
+    color: #555; /* Darker icon */
     border-radius: 50%;
     cursor: pointer;
-    font-size: 18px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: background 0.2s;
+    font-size: 16px; /* Adjust icon size */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s, box-shadow 0.2s;
+    z-index: 10;
+    border: none;
 }
 
-#voice-btn:hover {
-    background: #ccc;
+/* Fine-tune position for single-line inputs if needed */
+.input-container input[type="text"] + .voice-btn {
+     top: 8px; /* Slightly higher for inputs */
 }
 
-/* Style for when the app is actively listening */
-.listening {
-    background-color: #ff4747 !important; 
+.voice-btn:hover {
+    background: #dcdcdc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.voice-btn.listening {
+    background-color: #ff4747 !important;
     color: white !important;
     box-shadow: 0 0 10px #ff4747;
     animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(255, 71, 71, 0.7);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(255, 71, 71, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(255, 71, 71, 0);
-    }
+    0% { box-shadow: 0 0 0 0 rgba(255, 71, 71, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 71, 71, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 71, 71, 0); }
 }
 
-/* --- OUTPUT AREA --- */
+/* --- OUTPUT & UTILITIES --- */
 .resume-output {
     margin-top: 30px;
-    border-top: 2px solid #ddd;
+    border-top: 2px solid #eee; /* Slightly thicker border */
     padding-top: 20px;
 }
 
-pre {
-    background-color: #f0f0f0; 
-    padding: 20px;
+#resume-text {
+    background-color: #fff;
+    padding: 25px; /* More padding */
     border-radius: 8px;
     border: 1px solid #ddd;
-    white-space: pre-wrap; 
+    white-space: normal;
     word-wrap: break-word;
     font-size: 15px;
     line-height: 1.6;
-    color: #222;
+    color: #333; /* Slightly darker text */
+    min-height: 150px; /* Ensure it has some height initially */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
 }
 
-/* --- UTILITIES --- */
 .hidden {
     display: none !important;
 }
 
 #loading-spinner {
-    display: none; 
+    display: none;
     margin: 20px auto;
     width: 40px;
     height: 40px;
     border: 4px solid #f3f3f3;
-    border-top: 4px solid #8A2BE2; 
+    border-top: 4px solid #8A2BE2;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -283,7 +290,6 @@ pre {
     100% { transform: rotate(360deg); }
 }
 
-/* --- LANGUAGE SELECTOR --- */
 .lang-selector {
     text-align: right;
     margin-bottom: 15px;
@@ -294,52 +300,20 @@ pre {
     padding: 5px 10px;
     border-radius: 4px;
     border: 1px solid #ccc;
+    background-color: #fff; /* Ensure bg is white */
 }
 
-/* --- DOWNLOAD TEMPLATE STYLES (Print/Export) --- */
-.resume-download-content {
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.4;
-    max-width: 8.5in; 
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.resume-download-content h3 {
-    font-size: 16px;
-    color: #333;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    padding-bottom: 3px;
-    border-bottom: 1px solid #ccc;
-    text-transform: uppercase;
-}
-
-.resume-download-content p, .resume-download-content ul {
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.contact-line {
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #000;
-}
-
-/* --- FOOTER STYLES --- */
+/* --- FOOTER --- */
 .app-footer {
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 40px auto 0;
     padding: 15px 0 10px 0;
     text-align: center;
     font-size: 12px;
-    color: #555; 
-    border-top: 1px solid #e0e0e0; 
-    background-color: #F8F5FF; 
+    color: #555;
+    border-top: 1px solid #e0e0e0;
+    background-color: #F8F5FF;
 }
 
 .app-footer p {
@@ -348,13 +322,13 @@ pre {
 }
 
 .footer-link {
-    color: #8A2BE2; 
+    color: #8A2BE2;
     text-decoration: none;
     margin: 0 8px;
     transition: color 0.2s;
 }
 
 .footer-link:hover {
-    color: #4B0082; 
+    color: #4B0082;
     text-decoration: underline;
 }
